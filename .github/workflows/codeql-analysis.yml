@@ -75,8 +75,7 @@ jobs:
        #git checkout 4658b0fcb53918ddea4ef07580cda12d42295527 && \
        cmake -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=./clang.toolchain . && \
        ninja ydb/apps/ydbd/ydbd
-      timeout-minutes: | 
-       1000
+      timeout-minutes: 1000
     #   echo "Run, Build Application using script"
     #   ./location_of_script_within_repo/buildscript.sh
     - name: Perform CodeQL Analysis
