@@ -39,8 +39,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-    - run: |
-       git checkout 4658b0fcb53918ddea4ef07580cda12d42295527
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
@@ -74,8 +72,9 @@ jobs:
        echo 'deb http://apt.llvm.org/focal/ llvm-toolchain-focal main' | sudo tee /etc/apt/sources.list.d/llvm.list >/dev/null && \
        apt update && \
        apt -y install git cmake python python3-pip ninja-build antlr3 m4 clang-12 lld-12 libidn11-dev libaio1 libaio-dev && \
-       sudo pip3 install conan
-       cmake -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=./clang.toolchain .
+       sudo pip3 install conan && \
+       git checkout 4658b0fcb53918ddea4ef07580cda12d42295527 && \
+       cmake -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=./clang.toolchain . && \
        ninja ydb/apps/ydbd/ydbd
 
     #   echo "Run, Build Application using script"
